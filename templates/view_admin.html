@@ -1,0 +1,11 @@
+{% include "_top_logged.html" %}
+
+<main>
+{% if active_tab == 'users' %}
+    {% include "_admin_users.html" %}
+{% elif active_tab == 'items' %}
+    {% include "_admin_items.html" %}
+{% endif %}
+</main>
+
+{% include "_bottom.html" %}

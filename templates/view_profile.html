@@ -1,0 +1,53 @@
+{% include "_top_logged.html" %}
+<main class="mx-8 min-h-80vh" xl="mx-16">
+    <section lg="max-w-900px mx-auto">
+        <div class="d-flex flex-row j-content-between a-items-start" i-sm="mb-6">
+            <div class="d-flex flex-row gap-4 a-items-baseline">
+                <h1 i-sm="text-lh-resp">Profile</h1>
+                {% if 'restaurant' in session['user'].get('roles', []) %}
+                    <h2 class="text-120">Restaurant</h2>
+                {% endif %} 
+                {% if 'partner' in session['user'].get('roles', []) %}
+                    <h2 class="text-120">Partner</h2>
+                {% endif %} 
+                {% if 'admin' in session['user'].get('roles', []) %}
+                    <h2 class="text-120">Admin</h2>
+                {% endif %} 
+            </div>
+            <form method="POST" action="{{url_for('logout')}}">
+                <button class="light-btn" hover="bg-c-#D6EFFA">
+                    Logout
+                </button>
+            </form>
+        </div>
+        {% include "__profile_tabs.html" %}
+
+        {% if active_tab == 'profile' %}
+            <div class="d-flex flex-row j-content-center a-items-center gap-16">
+                {% if 'restaurant' in session['user'].get('roles', []) %}
+                    <img src="{{ url_for('static', filename='dishes/' + session['user'].get('user_avatar')) }}" class="w-28 h-28 obj-f-cover max-w-100% rounded-full shadow-lg " alt="profile picture">
+                {% else %}
+                    <img src="{{ url_for('static', filename='avatars/' + session['user'].get('user_avatar')) }}" class="w-28 h-28 obj-f-cover max-w-100% rounded-full shadow-lg " alt="profile picture">
+                {% endif %}
+                <div>
+                    <h2 class="text-200" i-sm="mb-6">{{ user["user_name"] }} {% if 'customer' in session['user'].get('roles', []) or 'admin' in session['user'].get('roles', []) %} {{ user["user_last_name"] }} {% endif %}</h2>
+                    <div class="d-flex flex-row gap-16 a-items-center j-content-start" i-sm="flex-col a-items-start gap-4">
+                        <div>
+                            <h3>Email</h3>
+                            <p>{{ user["user_email"] }}</p>
+                        </div>
+                        <div>
+                            <h3>Address</h3>
+                            <p>{{ user["user_address"] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% elif active_tab == 'edit' %}
+            {% include "_edit_profile.html" %}
+        {% elif active_tab == 'delete' %}
+            {% include "_delete_profile.html" %}
+        {% endif %}
+    </section>
+</main>
+{% include "_bottom.html" %}

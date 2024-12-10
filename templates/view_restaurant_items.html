@@ -1,0 +1,71 @@
+{% if session['user'] %}
+        {% include "_top_logged.html" %}
+{% else %}
+        {% include "_top.html" %}
+{% endif %}
+
+<main>
+    <section>
+        <div class="p-relative -mx-8 -mt-16 mb-4" xl="-mx-16">
+            <img src="{{ url_for('static', filename='dishes/' + restaurant['user_avatar'])  }}" 
+                alt="Current Image" 
+                class="w-full h-300px obj-f-cover mb-2" xl="h-350px">
+            <div class="p-absolute w-full h-300px top-0 left-0 overlay z-10 p-relative" xl="h-350px">
+                <div class="p-absolute bottom-8 left-8" xl="left-16">
+                <h1 class="text-c-white mb-0" >{{ restaurant["user_name"] }}</h1>
+                <h3 class="text-c-grey3 text-w-normal">{{ restaurant["user_address"] }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6" >
+            <a href="{{ referrer_url }}" class="d-flex j-content-start a-content-center gap-2">
+                <img src="{{ url_for('static', filename='img/arrow-back.svg')}}" alt="Go back" class="w-5 pb-0.5">
+                <span class="text-90 text-c-primary">Go back</span>
+            </a>
+        </div>
+
+        <h2 class="mb-4">Menu</h2>
+        <div class="d-grid cols-1 gap-4 gap-y-(1.5rem) gap-x-(1rem) mt-(1.5rem)" md="cols-2" xl="cols-3">
+            {% for item in items %}
+                <div id="menuItem-{{ item['item_pk'] }}"  class="pa-4 rounded-6 bg-white shadow-sm ts-500 d-flex cursor-pointer j-content-between h-full p-relative" hover="scale-104">
+                    <div class=" d-flex flex-col j-content-between">
+                        <h3>{{ item["item_title"] }}</h3>
+                        <p class="text-c-primary">DKK {{ item["item_price"] }}</p>
+                    </div>
+                    <div class="h-(6.75rem) z-5 w-(10rem) p-relative">
+                        <img src="{{ url_for('static', filename='dishes/' + (item['item_image'] or 'dish_1.jpg')) }}" 
+                        alt="{{ item.item_title }}" 
+                        class="w-full h-full obj-f-cover p-absolute rounded-6"/> 
+                    
+                        <div class="p-absolute z-10 top-0 right-0 bg-c-secondary rounded-t-r-5 rounded-b-l-xl pa-3">
+                            <img src="{{ url_for('static', filename='img/add.svg') }}" alt="add item" class="w-3 mx-1">
+                        </div>
+                    </div>
+                </div>
+                
+                <dialog id="modal-{{ item['item_pk'] }}" class="w-40vw max-w-600px p-self-center rounded-6" i-sm="w-80vw" i-md="w-60vw" i-lg="w-50vw">
+                    <img src="{{ url_for('static', filename='dishes/' + (item['item_image'] or 'dish_1.jpg')) }}" 
+                            alt="{{ item.item_title }}" class="w-full h-250px obj-f-cover rounded-t-6 p-relative" xl="h-300px"/>
+                        
+                        <button class="light-btn w-10 h-10 pa-3 rounded-full p-absolute top-10 right-10" id="modalClose-{{ item['item_pk'] }}"  hover="bg-c-#D6EFFA">
+                            <img src="{{ url_for('static', filename='img/exit.svg') }}" alt="close" class="p-self-center">
+                        </button>
+                        
+                        <div class="pa-6">
+                            <h3 id="title-{{ item['item_pk'] }}" class="mb-0">{{ item["item_title"] }}</h3>
+                            <p id="price-{{ item['item_pk'] }}" class="text-c-primary mt-0">DKK {{ item["item_price"] }}</p>
+                            
+                            <button id="addToCart-{{ item['item_pk'] }}" class="w-100% d-flex j-content-between a-items-center mt-6"> 
+                                <p>Add to order</p>
+                                <p>DKK {{item["item_price"]}}</p>
+                            </button>
+                        </div>
+
+                </dialog>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+{% include "_bottom.html" %}

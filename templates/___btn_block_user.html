@@ -1,0 +1,12 @@
+<form id="frm_user_block">
+    <button
+        class="bg-c-red:+5  text-c-body px-3 py-1 rounded-sm mr-2 h-10 cursor-pointer"
+        id="block-{{ user['user_pk'] }}"
+        mix-put="/users/block/{{ user['user_pk'] }}"
+        mix-data="#frm_user_block"
+        mix-default="Block"
+        mix-await="Blocking..">
+        Block
+    </button>
+</form>
+

@@ -1,0 +1,38 @@
+<section>
+    <h1>Items</h1>
+    <div class="rounded-sm overflow-hidden">
+        <div class="d-flex flex-col">
+            <div
+                class="d-flex py-4 a-content-center p-content-center bg-c-grey3 text-c-black">
+                <div class="pl-6 flex-1 text-w-semibold">Restaurant</div>
+                <div class="pl-4 flex-1 text-w-semibold">Item title</div>
+                <div class="pl-4 flex-1 text-w-semibold">Item price</div>
+                <div class="px-4 flex-1 text-w-medium"></div>
+            </div>
+
+            <div id="users">
+                {% for item in items %}
+                    <div id="u{{ user['user_pk'] }}"  class="d-flex px-2 a-items-center p-content-start bg-c-grey3" odd="bg-c-grey2">
+                        <div class="py-1 pl-4 flex-1 text-c-black text-sm a-content-center">
+                            {{ item["user_name"] }}
+                        </div>
+                        <div class="py-1 pl-6 flex-1 text-c-black text-sm a-content-center">
+                            {{ item["item_title"] }}
+                        </div>
+                        <div class="py-1 pl-6 flex-1 text-c-black text-sm a-content-center">
+                            {{ item["item_price"] }} kr.
+                        </div>
+                        <div class="py-1 pl-6 flex-1 d-flex p-content-end">
+                            {% if item["item_blocked_at"] == 0 %}
+                                {% include "___btn_block_item.html" %}
+                            {% else %}
+                                {% include "___btn_unblock_item.html" %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+

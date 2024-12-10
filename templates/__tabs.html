@@ -1,0 +1,39 @@
+<section class="d-flex j-content-center flex-row a-items-center gap-2">
+    {% if 'customer' in session['user'].get('roles', []) %}
+        <!-- Tabs for Customer -->
+        <a href="{{ url_for('view_customer', tab='explore') }}" class="tab-btn {% if active_tab == 'explore' %}active{% endif %}"
+            data-tab="explore" hover="{{ 'bg-c-grey2 rounded-full' if active_tab != 'explore' else '' }}"> 
+            <img src="{{ url_for('static', filename='img/location.svg') }}" alt="" class="h-5">
+            <p>Explore</p>
+        </a>
+        <a href="{{ url_for('view_customer', tab='restaurants') }}" class="tab-btn {% if active_tab == 'restaurants' %}active{% endif %}"
+            data-tab="restaurants" hover="{{ 'bg-c-grey2 rounded-full' if active_tab != 'restaurants' else '' }}"> 
+            <img src="{{ url_for('static', filename='img/fork_knife.svg') }}" alt="" class="h-5">
+            <p>Restaurants</p>
+        </a>
+    {% elif 'restaurant' in session['user'].get('roles', []) %}
+        <!-- Tabs for Restaurant -->
+        <a href="{{ url_for('view_restaurant', tab='add_items') }}" class="tab-btn {% if active_tab == 'add_items' %}active{% endif %}"
+            data-tab="add_items" hover="{{ 'bg-c-grey2 rounded-full' if active_tab != 'add_items' else '' }}">
+            <img src="{{ url_for('static', filename='img/items.svg') }}" alt="" class="h-5">
+            <p>Add items</p>
+        </a>
+        <a href="{{ url_for('view_restaurant', tab='your_restaurant') }}" class="tab-btn {% if active_tab == 'your_restaurant' %}active{% endif %}"
+            data-tab="you_restaurant" hover="{{ 'bg-c-grey2 rounded-full' if active_tab != 'your_restaurant' else '' }}">
+            <img src="{{ url_for('static', filename='img/fork_knife.svg') }}" alt="" class="h-5">
+            <p>Your restaurant</p>
+        </a>
+    {% elif 'admin' in session['user'].get('roles', []) %}
+        <!-- Tabs for Admin -->
+        <a href="{{ url_for('view_admin', tab='items') }}" class="tab-btn {% if active_tab == 'items' %}active{% endif %}"
+            data-tab="items" hover="{{ 'bg-c-grey2 rounded-full' if active_tab != 'items' else '' }}">
+            <img src="{{ url_for('static', filename='img/items.svg') }}" alt="" class="h-5">
+            <p>Items</p>
+        </a>
+        <a href="{{ url_for('view_admin', tab='users') }}" class="tab-btn {% if active_tab == 'users' %}active{% endif %}"
+            data-tab="users" hover="{{ 'bg-c-grey2 rounded-full' if active_tab != 'users' else '' }}">
+            <img src="{{ url_for('static', filename='img/users.svg') }}" alt="" class="h-5">
+            <p>Users</p>
+        </a>
+    {% endif %}
+</section>

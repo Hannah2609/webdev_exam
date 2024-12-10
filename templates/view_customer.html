@@ -1,0 +1,15 @@
+{% if session['user'] %}
+        {% include "_top_logged.html" %}
+{% else %}
+        {% include "_top.html" %}
+{% endif %}
+
+<main>
+{% if active_tab == 'explore' %}
+        {% include "_explore.html" %}
+{% elif active_tab == 'restaurants' %}
+        {% include "_restaurants.html" %}
+{% endif %}
+</main>
+
+{% include "_bottom.html" %}

@@ -1,0 +1,20 @@
+
+{% if session['user'] %}
+        {% include "_top_logged.html" %}
+{% else %}
+        {% include "_top.html" %}
+{% endif %}
+
+<main class="min-h-80vh">
+        {% if active_tab == 'add_items' %}
+
+                {% include "__add_items.html" %}
+
+        {% elif active_tab == 'your_restaurant' %}
+
+                {% include "__your_restaurant.html" %}
+
+        {% endif %}
+</main>
+
+{% include "_bottom.html" %}
