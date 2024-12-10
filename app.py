@@ -15,8 +15,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 
 
-# app.secret_key = "your_secret_key"
-
 ##############################
 ##############################
 ##############################
