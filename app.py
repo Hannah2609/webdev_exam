@@ -677,7 +677,7 @@ def signup(role):
             <body>
                 <p>Hi {user_name},</p>
                 <p>Thank you for signing up! Please verify your account by clicking the link below:</p>
-                <p><a href="http://127.0.0.1/verify/{user_verification_key}">Verify My Account</a></p>
+                <p><a href="{x.base_url}/verify/{user_verification_key}">Verify My Account</a></p>
             </body>
         </html>
         """
@@ -824,7 +824,7 @@ def reset_password():
             <body>
                 <p>Hi {user_name},</p>
                 <p>Click the link below to reset your password</p>
-                <a href="http://127.0.0.1/reset-password/{password_reset_key}">Reset password</a>
+                <a href="{x.base_url}/reset-password/{password_reset_key}">Reset password</a>
             </body>
         </html>
         """
