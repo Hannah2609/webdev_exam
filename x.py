@@ -44,7 +44,7 @@ def db():
         host= "Hannahisabelgrenade.mysql.pythonanywhere-services.com" if "PYTHONANYWHERE_DOMAIN" in os.environ else "mysql",   #  MySQL server's address or docker service name "mysql"
         user= "Hannahisabelgren" if "PYTHONANYWHERE_DOMAIN" in os.environ else  "root",  # Replace with your MySQL username
         password= "mysqlpassword" if "PYTHONANYWHERE_DOMAIN" in os.environ else  "password",  # Replace with your MySQL password
-        database= "Hannahisabelgren$default" if "PYTHONANYWHERE_DOMAIN" in os.environ else "company"   # Replace with your MySQL database name
+        database= "Hannahisabelgren$mydatabase" if "PYTHONANYWHERE_DOMAIN" in os.environ else "company"   # Replace with your MySQL database name
     )
     cursor = db.cursor(dictionary=True)
     return db, cursor
@@ -117,7 +117,7 @@ def validate_user_address():
     return user_address
 
 ##############################
-# CHATGPT pattern to check email pattern
+# CHATGPT pattern to check email 
 REGEX_EMAIL = "^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" 
 def validate_user_email():
     error = "Email invalid"
