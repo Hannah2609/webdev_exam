@@ -184,7 +184,7 @@ def validate_item_price():
         return item_price
 
 ##############################
-UPLOAD_ITEM_FOLDER = '/home/hannahisabelgrenade/webdev-exam/static/dishes' if "PYTHONANYWHERE_DOMAIN" in os.environ else './static/dishes' #saves img in static/dishes folder
+UPLOAD_ITEM_FOLDER = '/home/hannahisabelgrenade/webdev_exam/static/dishes' if "PYTHONANYWHERE_DOMAIN" in os.environ else './static/dishes' #saves img in static/dishes folder
 ALLOWED_ITEM_FILE_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 def validate_item_image():
     # Check if 'item_image' is in the request and is not empty
