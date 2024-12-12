@@ -42,6 +42,9 @@ try:
     cursor.execute("DROP TABLE IF EXISTS users_roles")  # dependent table
     cursor.execute("DROP TABLE IF EXISTS users")
     cursor.execute("DROP TABLE IF EXISTS roles")
+    cursor.execute("DROP TABLE IF EXISTS item_images")
+
+
 
     ##############################
     # Create tables
@@ -83,6 +86,16 @@ try:
     """)
 
     cursor.execute("ALTER TABLE `items` ADD INDEX(`item_title`);")
+
+    cursor.execute("""
+        CREATE TABLE item_images (
+            image_pk VARCHAR(36),
+            item_fk VARCHAR(36),
+            image_path VARCHAR(255) NOT NULL,
+            image_order TINYINT DEFAULT 0,
+            FOREIGN KEY (item_fk) REFERENCES items(item_pk) ON DELETE CASCADE
+        )
+    """)
 
     cursor.execute("""
         CREATE TABLE roles (
