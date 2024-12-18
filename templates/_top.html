@@ -19,7 +19,7 @@
                 <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo" class="w-16">
             </a>
             <a href="{{ url_for('view_signup_partner')}}" class="text-c-black" i-sm="d-none" hover="text-c-grey4">Volt partner</a>
-            <a href="{{ url_for('view_signup_restaurant')}}" class="text-c-black" i-sm="d-none" hover="text-c-grey4">restaurant</a>
+            <a href="{{ url_for('view_signup_restaurant')}}" class="text-c-black" i-sm="d-none" hover="text-c-grey4">Restaurant</a>
         </div>
         <section class="d-flex gap-2">
             <form method="GET" action="{{url_for('view_signup')}}">
@@ -36,7 +36,7 @@
     </nav>
     <nav class="d-flex j-content-start gap-6 py-2 px-8  border-b-1 border-c-grey1" sm="d-none">
         <a href="{{ url_for('view_signup_partner')}}" class="text-c-black" hover="text-c-grey4">Volt partner</a>
-        <a href="{{ url_for('view_signup_restaurant')}}" class="text-c-black" hover="text-c-grey4">restaurant</a>
+        <a href="{{ url_for('view_signup_restaurant')}}" class="text-c-black" hover="text-c-grey4">Restaurant</a>
     </nav>
 </header>
     <div id="toast" class="d-flex flex-col j-content-center p-fixed w-full top-4 z-10"></div>

@@ -26,11 +26,10 @@ def ______GET______(): pass
 ##############################
 
 
-
 ##############################
 @app.get("/")
 def view_index():
-    name = "X"
+    name = "Hannah"
     return render_template("view_index.html", name=name, title="Volt exam")
 
 
